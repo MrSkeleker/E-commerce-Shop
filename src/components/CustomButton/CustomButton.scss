@@ -16,6 +16,18 @@
     border: none;
     cursor: pointer;
 
+    &.inversed {
+        background-color: $white;
+        color: $black;
+        border: 1px solid $black;
+
+        &:hover {
+            background-color: $black;
+            color: $white;
+            border: none;
+        }
+    }
+
     &.google {
         background-color: $google-blue;
         color: $white;
