@@ -18,7 +18,7 @@
     .cart-items {
         @include flex(column);
         height: 240px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     button {

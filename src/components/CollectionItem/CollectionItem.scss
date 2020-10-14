@@ -4,6 +4,7 @@
     @include flex(column, $align-items: center);
 	width: 22%;
 	height: 350px;
+	position: relative;
 
 	.image {
 		width: 100%;
@@ -21,6 +22,25 @@
 
 		.name {
 			margin-bottom: 1.5rem;
+		}
+	}
+
+	.custom-button {
+		position: absolute;
+		opacity: 0.7;
+		width: 80%;
+		top: 255px;
+		display: none;
+	}
+
+	&:hover {
+		.image {
+			opacity: 0.8;
+		}
+
+		.custom-button {
+			display: flex;
+			opacity: 0.85;
 		}
 	}
 }
