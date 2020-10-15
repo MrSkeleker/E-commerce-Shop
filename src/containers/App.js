@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import './App.scss';
 
@@ -10,9 +11,11 @@ import Header from '../components/Header/Header';
 import { loadingMessage } from '../constants';
 import { auth, createUserProfileDocument } from '../utils/firebase.utils';
 import { setCurrentUser } from '../redux/user/userActions';
+import { selectCurrentUser } from '../redux/user/userSelector';
 
 const ShopPage = lazy(() => import('./pages/Shop/Shop'));
 const AuthenticationPage = lazy(() => import('./pages/Authentication/Authentication'));
+const CheckOutPage = lazy(() => import('./pages/CheckOut/CheckOut'));
 
 class App extends React.Component {
 
@@ -45,11 +48,12 @@ class App extends React.Component {
         <Switch>
           <Suspense fallback={<Loading message={loadingMessage} />}>
             <Route exact path='/' component={HomePage} />
-            <Route exact path='/shop' component={ShopPage} />
+            <Route path='/shop' component={ShopPage} />
+            <Route exact path='/checkout' component={CheckOutPage} />
             <Route exact path='/signin' render={() =>
               this.props.currentUser
-              ? <Redirect to='/'/>
-              : <AuthenticationPage />
+                ? <Redirect to='/' />
+                : <AuthenticationPage />
             } />
           </Suspense>
         </Switch>
@@ -58,8 +62,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({
