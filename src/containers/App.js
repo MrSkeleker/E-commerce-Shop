@@ -16,6 +16,7 @@ import { selectCurrentUser } from '../redux/user/userSelector';
 const ShopPage = lazy(() => import('./pages/Shop/Shop'));
 const AuthenticationPage = lazy(() => import('./pages/Authentication/Authentication'));
 const CheckOutPage = lazy(() => import('./pages/CheckOut/CheckOut'));
+const ContactPage = lazy(() => import('./pages/Contact/Contact'));
 
 class App extends React.Component {
 
@@ -49,6 +50,7 @@ class App extends React.Component {
           <Suspense fallback={<Loading message={loadingMessage} />}>
             <Route exact path='/' component={HomePage} />
             <Route path='/shop' component={ShopPage} />
+            <Route exact path='/contact' component={ContactPage} />
             <Route exact path='/checkout' component={CheckOutPage} />
             <Route exact path='/signin' render={() =>
               this.props.currentUser
