@@ -59,6 +59,7 @@ const SignUp = () => {
             const { user } = await auth.createUserWithEmailAndPassword(email.value, password.value);
             await createUserProfileDocument(user, { displayName: displayName.value });
             setState(initialState);
+            alert('Successful Sign Up');
         }
         catch (error) {
             console.error(error)

@@ -7,10 +7,10 @@ import SignUp from '../../../components/SignUp/SignUp';
 
 const AuthenticationPage = () => {
     return (
-        <div className='authentication'>
+        <main className='authentication'>
             <SignIn />
             <SignUp />
-        </div>
+        </main>
     )
 }
 

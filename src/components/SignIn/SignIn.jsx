@@ -34,6 +34,7 @@ const SignIn = () => {
         try {
             await auth.signInWithEmailAndPassword(email.value, password.value);
             setState(initialState);
+            alert('Successful Sign In');
         } catch (error) {
             console.error(error);
             alert(error.message);

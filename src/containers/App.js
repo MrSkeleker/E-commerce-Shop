@@ -11,7 +11,7 @@ import Header from '../components/Header/Header';
 import { loadingMessage } from '../constants';
 import { auth, createUserProfileDocument } from '../utils/firebase.utils';
 import { setCurrentUser } from '../redux/user/userActions';
-import { selectCurrentUser } from '../redux/user/userSelector';
+import { selectCurrentUser } from '../redux/user/userSelectors';
 
 const ShopPage = lazy(() => import('./pages/Shop/Shop'));
 const AuthenticationPage = lazy(() => import('./pages/Authentication/Authentication'));

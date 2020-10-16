@@ -2,7 +2,8 @@
 
 .collection-item {
     @include flex(column, $align-items: center);
-	width: 22%;
+	max-width: 22vw;
+	width: auto;
 	height: 350px;
 	position: relative;
 

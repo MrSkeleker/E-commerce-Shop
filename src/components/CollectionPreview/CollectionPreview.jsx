@@ -1,17 +1,23 @@
 import React from 'react';
-import CollectionItem from '../CollectionItem/CollectionItem';
+import { Link } from 'react-router-dom';
 
 import './CollectionPreview.scss';
 
+import CollectionItem from '../CollectionItem/CollectionItem';
+
 const CollectionPreview = (props) => {
-    const { title, items } = props;
+    const { title, items, routeName } = props;
     return (
         <div className='collection-preview'>
-            <h2 className='title'>{title.toUpperCase()}</h2>
+            <h2 className='title'>
+                <Link to={`/shop/${routeName}`}>
+                    {title.toUpperCase()}
+                </Link>
+            </h2>
             <div className='preview'>
                 {
                     items.slice(0, 4).map((item) => (
-                        <CollectionItem key={item.id} item={item}/>
+                        <CollectionItem key={item.id} item={item} />
                     ))
                 }
             </div>

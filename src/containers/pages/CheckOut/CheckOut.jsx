@@ -11,7 +11,7 @@ const CheckOutPage = (props) => {
     const { cartItems, total } = props;
     const checkoutHeaders = ['Product', 'Description', 'Quantity', 'Price', 'Remove']
     return (
-        <div className='checkout-page'>
+        <main className='checkout-page'>
             <div className='checkout-header'>
                 {checkoutHeaders.map(header =>
                     <div key={header} className='header-block'>
@@ -25,7 +25,7 @@ const CheckOutPage = (props) => {
             <div className='total'>
                 <span>TOTAL: ${total}</span>
             </div>
-        </div>
+        </main>
     )
 }
 

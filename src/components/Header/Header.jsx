@@ -10,7 +10,7 @@ import { ReactComponent as Logo } from '../../assets/images/crown.svg'
 import CartIcon from '../CartIcon/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
 import { selectCartHidden } from '../../redux/cart/cartSelectors';
-import { selectCurrentUser } from '../../redux/user/userSelector';
+import { selectCurrentUser } from '../../redux/user/userSelectors';
 
 
 const Header = (props) => {

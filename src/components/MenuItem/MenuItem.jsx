@@ -8,7 +8,7 @@ const MenuItem = (props) => {
     return (
         <div
             className={`menu-item ${size}`}
-            onClick={() => history.push(`${match.url !== '/' ? match.url : ''}${linkUrl}`)}
+            onClick={() => history.push(`/shop${match.url !== '/' ? match.url : ''}${linkUrl}`)}
         >
             <div
                 className='background-image'
