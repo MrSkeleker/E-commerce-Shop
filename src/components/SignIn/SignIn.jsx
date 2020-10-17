@@ -6,7 +6,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import FormInput from '../FormInput/FormInput';
 import { auth, signInWithGoogle } from '../../utils/firebase.utils';
 import { signInTitle, signInDescription, requiredFieldError, invalidEmailError } from '../../constants';
-import { emailValidator, requiredValidator} from '../../utils/validator.util';
+import { emailValidator, requiredValidator } from '../../utils/validator.util';
 import { useForm } from '../../utils/hooks/useForm';
 
 const initialState = {
@@ -24,24 +24,24 @@ const initialState = {
         validators: [
             requiredValidator(requiredFieldError)
         ]
-    },
+    }
 }
 
 const SignIn = () => {
-
     const onSubmit = async (state, setState) => {
         const { email, password } = state;
         try {
             await auth.signInWithEmailAndPassword(email.value, password.value);
             setState(initialState);
             alert('Successful Sign In');
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
             alert(error.message);
         }
     }
 
-    const {state, handleBlur, handleChange, handleSubmit } = useForm({initialState, onSubmit})
+    const { state, handleBlur, handleChange, handleSubmit } = useForm({ initialState, onSubmit })
     const { email, password } = state;
     return (
         <div className='sign-in'>
