@@ -20,7 +20,6 @@ export const createUserProfileDocument = async (userAuth, additionalData = null)
     if (!userSnapShot.exists) {
         const { displayName, email } = userAuth;
         const createdAt = new Date();
-
         try {
             await userRef.set({
                 displayName,
@@ -32,8 +31,36 @@ export const createUserProfileDocument = async (userAuth, additionalData = null)
             console.error('Error creating user', error.message)
         }
     }
-
     return userRef;
+}
+
+export const addCollectionAndDocuments = async (collectionKey, items) => {
+    const collectionRef = firestore.collection(collectionKey);
+
+    const batch = firestore.batch();
+    items.forEach(item => {
+        const newDocRef = collectionRef.doc();
+        batch.set(newDocRef, item);
+    });
+
+    return await batch.commit();
+}
+
+export const convertCollectionsSnapshotToMap = (snapshot) => {
+    const collections =  snapshot.docs.map(doc => {
+        const {title, items} = doc.data();
+        return {
+            id: doc.id,
+            routeName: encodeURI(title.toLowerCase()),
+            title,
+            items,
+        }
+    })
+
+    return collections.reduce((collectionMap, collection) => {
+        collectionMap[collection.title.toLowerCase()] = collection;
+        return collectionMap;
+    }, {})
 }
 
 firebase.initializeApp(config);
@@ -45,6 +72,7 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 firebase.auth().useDeviceLanguage();
+
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 export const signInWithFacebook = () => auth.signInWithPopup(facebookProvider);
 

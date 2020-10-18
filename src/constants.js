@@ -16,3 +16,7 @@ export const passwordMatchError = 'Passwords don\'t match';
 // STRIPE
 
 export const publishableStripeKey = 'pk_test_51Hct2XFrW91A9yPGOapjiO64LwFGSCOXsbccdAmSTvp9cRtWOVcxJHuHvo1A76dHIlWEEdcsjbCrE8CMSRHwe9DW00gxs9zkCI';
+
+// FIREBASE
+
+export const shopCollectionsName = 'collections';
