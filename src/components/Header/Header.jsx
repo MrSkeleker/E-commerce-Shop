@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import './Header.scss'
+import {HeaderContainer, OptionsContainer, NavContainer, OptionLiContainer, LogoContainer} from './StyledHeader';
 
 import { auth } from '../../utils/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/images/crown.svg'
@@ -16,31 +16,31 @@ import { selectCurrentUser } from '../../redux/user/userSelectors';
 const Header = (props) => {
     const { currentUser, hidden } = props;
     return (
-        <header className='header'>
-            <nav className='nav'>
-                <Link className='logo-container' to="/">
+        <HeaderContainer>
+            <NavContainer>
+                <LogoContainer to="/">
                     <Logo className='logo' />
-                </Link>
-                <ul className='options'>
-                    <li className='option'>
+                </LogoContainer>
+                <OptionsContainer>
+                    <OptionLiContainer>
                         <Link to="/shop">SHOP</Link>
-                    </li>
-                    <li className='option'>
+                    </OptionLiContainer>
+                    <OptionLiContainer>
                         <Link to="/contact">CONTACT</Link>
-                    </li>
-                    <li className='option'>
+                    </OptionLiContainer>
+                    <OptionLiContainer>
                         {currentUser
                             ? <div onClick={() => auth.signOut()}>SIGN OUT</div>
                             : <Link to='/signin'>SIGN IN</Link>
                         }
-                    </li>
-                    <li className='option'>
+                    </OptionLiContainer>
+                    <OptionLiContainer>
                         <CartIcon />
-                    </li>
-                </ul>
+                    </OptionLiContainer>
+                </OptionsContainer>
                 {!hidden ? <CartDropdown /> : null}
-            </nav>
-        </header>
+            </NavContainer>
+        </HeaderContainer>
     )
 }
 

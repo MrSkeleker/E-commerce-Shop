@@ -1,6 +1,0 @@
-@import '../../../theme/mixins';
-
-.homepage {
-    @include flex(column, $align-items: center);
-    padding: 2rem 8rem;
-}
