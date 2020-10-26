@@ -35,15 +35,29 @@ const INITIAL_STATE = {
             id: 5
         }
     ],
-    collections: null
+    collections: null,
+    isFetching: false,
+    errorMessage: undefined
 }
 
 const shopReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case ShopActionTypes.UPDATE_COLLECTIONS:
+        case ShopActionTypes.PENDING_COLLECTIONS:
             return {
                 ...state,
-                collections: action.payload
+                isFetching: true
+            }
+        case ShopActionTypes.SUCCESS_COLLECTIONS:
+            return {
+                ...state,
+                collections: action.payload,
+                isFetching: false
+            }
+        case ShopActionTypes.FAILURE_COLLECTIONS:
+            return {
+                ...state,
+                errorMessage: action.payload,
+                isFetching: false
             }
         default:
             return state;

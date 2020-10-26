@@ -1,6 +1,6 @@
 import React from 'react';
-import Spinner from '../Loading/Loaders/Spinner/Spinner';
-import { LoadingContainer } from '../Loading/StyledLoading';
+import Spinner from '../components/Loading/Loaders/Spinner/Spinner';
+import { LoadingContainer } from '../components/Loading/StyledLoading';
 
 const withSpinner = WrappedComponent => ({ isLoading, ...props }) => {
     return isLoading
