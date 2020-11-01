@@ -2,12 +2,13 @@ import React from 'react';
 
 import './SignUp.scss';
 
-import { auth, createUserProfileDocument } from '../../utils/firebase.utils';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import { invalidEmailError, passwordMatchError, requiredFieldError, signUpDescription, signUpTitle } from '../../constants';
 import { emailValidator, requiredValidator} from '../../utils/validator.util';
 import { useForm } from '../../utils/hooks/useForm';
+import { connect } from 'react-redux';
+import { signUpWithEmail } from '../../redux/user/userActions';
 
 const initialState = {
     displayName: {
@@ -41,7 +42,8 @@ const initialState = {
     }
 }
 
-const SignUp = () => {
+const SignUp = (props) => {
+    const {signUpWithEmail} = props;
 
     const onSubmit = async (state, setState) => {
         const { displayName, email, password, confirmPassword } = state;
@@ -56,13 +58,16 @@ const SignUp = () => {
             return;
         }
         try {
-            const { user } = await auth.createUserWithEmailAndPassword(email.value, password.value);
-            await createUserProfileDocument(user, { displayName: displayName.value });
+            signUpWithEmail({
+                    email: email.value,
+                    password: password.value, 
+                    displayName: displayName.value
+            });
             setState(initialState);
             alert('Successful Sign Up');
         }
         catch (error) {
-            console.error(error)
+            console.error(error.message)
         }
     }
     const {state, handleBlur, handleChange, handleSubmit } = useForm({initialState, onSubmit})
@@ -119,4 +124,10 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+
+
+const mapDispatchToProps = dispatch => ({
+    signUpWithEmail: (userCredentials) => dispatch(signUpWithEmail(userCredentials))
+})
+
+export default connect(null, mapDispatchToProps)(SignUp);

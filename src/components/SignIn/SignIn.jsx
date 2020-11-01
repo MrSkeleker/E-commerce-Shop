@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './SignIn.scss';
 
 import CustomButton from '../CustomButton/CustomButton';
 import FormInput from '../FormInput/FormInput';
-import { auth, signInWithGoogle } from '../../utils/firebase.utils';
 import { signInTitle, signInDescription, requiredFieldError, invalidEmailError } from '../../constants';
 import { emailValidator, requiredValidator } from '../../utils/validator.util';
 import { useForm } from '../../utils/hooks/useForm';
+import { signInWithGoogle, signInWithEmail } from '../../redux/user/userActions';
+
 
 const initialState = {
     email: {
@@ -27,17 +29,18 @@ const initialState = {
     }
 }
 
-const SignIn = () => {
+const SignIn = (props) => {
+    const { signInWithEmail, signInWithGoogle } = props;
+
     const onSubmit = async (state, setState) => {
         const { email, password } = state;
         try {
-            await auth.signInWithEmailAndPassword(email.value, password.value);
+            signInWithEmail(email.value, password.value);
             setState(initialState);
-            alert('Successful Sign In');
+            alert('Successful Sign In')
         }
-        catch (error) {
-            console.error(error);
-            alert(error.message);
+        catch(error) {
+            console.error(error.message);
         }
     }
 
@@ -78,4 +81,9 @@ const SignIn = () => {
     )
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+    signInWithGoogle: () => dispatch(signInWithGoogle()),
+    signInWithEmail: (email, password) => dispatch(signInWithEmail(email, password))
+})
+
+export default connect(null, mapDispatchToProps)(SignIn);
