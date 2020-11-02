@@ -1,7 +1,0 @@
-@import '../../../theme/mixins';
-
-.authentication {
-    @include flex(row, space-between);
-    width: 900px;
-    margin: 3rem auto;
-}
