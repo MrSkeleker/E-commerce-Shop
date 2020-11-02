@@ -1,0 +1,16 @@
+@import './colors';
+
+// Mixins
+
+@mixin flex($direction: row, $justify-content: stretch, $align-items: stretch){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin shrinkLabel {
+    top: -1.4rem;
+    font-size: 1.2rem;
+    color: $black;
+}

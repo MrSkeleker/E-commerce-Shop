@@ -1,0 +1,21 @@
+@import '../../theme/mixins';
+
+.cart-icon {
+    @include flex(row, center, center);
+    width: 45px;
+    height: 45px;
+    position: relative;
+    cursor: pointer;
+
+    .shopping-icon {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    .item-count {
+        position: absolute;
+        font-size: 1rem;
+        font-weight: bold;
+        bottom: 1.2rem;
+    }
+}

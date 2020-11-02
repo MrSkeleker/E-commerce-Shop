@@ -1,0 +1,18 @@
+@import '../../theme/mixins';
+
+.collection-preview {
+	@include flex(column);
+	margin-bottom: 3rem;
+
+	.title {
+		font-size: 2.8rem;
+        margin-bottom: 2.5rem;
+        font-weight: lighter;
+	}
+
+	.preview {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: 1rem;
+	}
+}
